@@ -17,8 +17,7 @@ class CodeSnippetViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 3,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: ListView(
         children: [
           // Заголовок
           Padding(
@@ -30,7 +29,7 @@ class CodeSnippetViewer extends StatelessWidget {
                   snippet.title,
                   style: Theme.of(context)
                       .textTheme
-                      .titleLarge
+                      .titleSmall
                       ?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 if (showCopyButton)
@@ -45,10 +44,15 @@ class CodeSnippetViewer extends StatelessWidget {
           // Код
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
-            child: CodeSyntaxHighlighter.highlightCode(
-              code: snippet.code,
-              language: snippet.language,
-              isDark: true,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minWidth: MediaQuery.of(context).size.width - 32,
+              ),
+              child: CodeSyntaxHighlighter.highlightCode(
+                code: snippet.code,
+                language: snippet.language,
+                isDark: true,
+              ),
             ),
           ),
           // Подсказки
@@ -64,7 +68,13 @@ class CodeSnippetViewer extends StatelessWidget {
                     children: snippet.hints
                         .map((hint) => Padding(
                               padding: const EdgeInsets.symmetric(vertical: 4),
-                              child: Text('• $hint'),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  '• $hint',
+                                  textAlign: TextAlign.left,
+                                ),
+                              ),
                             ))
                         .toList(),
                   ),

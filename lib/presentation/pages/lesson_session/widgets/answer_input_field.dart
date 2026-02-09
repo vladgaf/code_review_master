@@ -48,8 +48,8 @@ class _AnswerInputFieldState extends State<AnswerInputField> {
         const SizedBox(height: 8),
         TextField(
           controller: _controller,
-          maxLines: null,
-          minLines: 5,
+          maxLines: 10,
+          minLines: 3,
           decoration: InputDecoration(
             hintText: widget.hintText,
             border: OutlineInputBorder(

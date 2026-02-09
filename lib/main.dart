@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:code_review_master/core/di/di.dart';
 import 'package:code_review_master/core/theme/app_theme.dart';
 import 'package:code_review_master/presentation/pages/course_selection/course_selection_page.dart';
 import 'package:code_review_master/presentation/pages/course_selection/bloc/course_selection_bloc.dart';
+import 'package:window_manager/window_manager.dart';
 
 import 'domain/repositories/course_repository.dart';
 
@@ -19,6 +22,9 @@ Future<void> main() async {
     await repository.ensureCoursesDirectory();
   } catch (e) {
     print('Error initializing courses directory: $e');
+  }
+  if (Platform.isWindows) {
+    WindowManager.instance.setMinimumSize(const Size(1200, 700));
   }
 
   runApp(const CodeReviewMasterApp());

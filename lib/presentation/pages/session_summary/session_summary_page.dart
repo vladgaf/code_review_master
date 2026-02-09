@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:code_review_master/domain/entities/lesson.dart';
 
+import '../../../core/utils/syntax_highlighter.dart';
 import '../../../domain/entities/code_snippet.dart';
 
 class SessionSummaryPage extends StatelessWidget {
@@ -123,17 +124,22 @@ class _SnippetSummary extends StatelessWidget {
               snippet.title,
               style: Theme.of(context)
                   .textTheme
-                  .titleMedium
+                  .labelSmall
                   ?.copyWith(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             // Код
-            Container(
-              padding: const EdgeInsets.all(12),
-              color: Colors.grey[100],
-              child: SelectableText(
-                snippet.code,
-                style: const TextStyle(fontFamily: 'Monospace'),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: MediaQuery.of(context).size.width - 32,
+                ),
+                child: CodeSyntaxHighlighter.highlightCode(
+                  code: snippet.code,
+                  language: snippet.language,
+                  isDark: true,
+                ),
               ),
             ),
             const SizedBox(height: 12),
