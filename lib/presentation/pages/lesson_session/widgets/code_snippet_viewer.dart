@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/syntax_highlighter.dart';
 import '../../../../domain/entities/code_snippet.dart';
 
 class CodeSnippetViewer extends StatelessWidget {
@@ -17,7 +18,7 @@ class CodeSnippetViewer extends StatelessWidget {
     return Card(
       elevation: 3,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Заголовок
           Padding(
@@ -42,19 +43,12 @@ class CodeSnippetViewer extends StatelessWidget {
             ),
           ),
           // Код
-          Container(
-            padding: const EdgeInsets.all(16),
-            color: Colors.grey[900],
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: SelectableText(
-                snippet.code,
-                style: const TextStyle(
-                  fontFamily: 'FiraCode',
-                  fontSize: 14,
-                  color: Colors.white,
-                ),
-              ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: CodeSyntaxHighlighter.highlightCode(
+              code: snippet.code,
+              language: snippet.language,
+              isDark: true,
             ),
           ),
           // Подсказки

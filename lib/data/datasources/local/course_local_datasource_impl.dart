@@ -104,17 +104,7 @@ class CourseLocalDataSourceImpl implements CourseLocalDataSource {
     }
   }
 
-  // Private helpers
-  Future<String> _getCoursesDirectory() async {
-    final appDir = await getApplicationDocumentsDirectory();
-    return p.join(appDir.path, 'CodeReviewMaster', 'courses');
-  }
-
-  Future<String> _getCourseDirectory(String courseName) async {
-    final coursesDir = await _getCoursesDirectory();
-    return p.join(coursesDir, courseName);
-  }
-
+  @override
   Future<void> autoImportProjectCourses() async {
     try {
       // Путь к папке с курсами в проекте
@@ -147,5 +137,16 @@ class CourseLocalDataSourceImpl implements CourseLocalDataSource {
     } catch (e) {
       print('Error in auto-import $e');
     }
+  }
+
+  // Private helpers
+  Future<String> _getCoursesDirectory() async {
+    final appDir = await getApplicationDocumentsDirectory();
+    return p.join(appDir.path, 'CodeReviewMaster', 'courses');
+  }
+
+  Future<String> _getCourseDirectory(String courseName) async {
+    final coursesDir = await _getCoursesDirectory();
+    return p.join(coursesDir, courseName);
   }
 }

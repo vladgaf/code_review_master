@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:injectable/injectable.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:code_review_master/data/datasources/local/course_local_datasource.dart';

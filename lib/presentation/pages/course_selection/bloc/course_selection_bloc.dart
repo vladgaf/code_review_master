@@ -54,7 +54,8 @@ class CourseSelectionBloc
       if (success) {
         add(CourseSelectionRefreshRequested());
       } else {
-        emit(CourseSelectionError(message: 'Не удалось импортировать курс'));
+        emit(const CourseSelectionError(
+            message: 'Не удалось импортировать курс'));
       }
     } catch (e) {
       emit(CourseSelectionError(message: 'Ошибка импорта: $e'));

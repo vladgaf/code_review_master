@@ -18,6 +18,7 @@ class CodeSyntaxHighlighter {
     final theme = isDark ? themes['dark']! : themes['light']!;
 
     return Container(
+      // TODO: fix width
       padding: padding,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),

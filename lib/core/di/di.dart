@@ -5,7 +5,6 @@ import '../../data/datasources/local/course_local_datasource.dart';
 import '../../data/datasources/local/course_local_datasource_impl.dart';
 import '../../data/repositories/course_repository_impl.dart';
 import '../../domain/repositories/course_repository.dart';
-import '../../presentation/pages/course_selection/bloc/course_selection_bloc.dart';
 
 import 'di.config.dart';
 

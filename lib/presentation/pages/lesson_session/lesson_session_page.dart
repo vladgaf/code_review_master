@@ -114,6 +114,7 @@ class _SessionView extends StatelessWidget {
           const SizedBox(height: 16),
           // Код
           Expanded(
+            flex: 2,
             child: CodeSnippetViewer(snippet: currentSnippet),
           ),
           const SizedBox(height: 16),
