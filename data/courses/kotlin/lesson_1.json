@@ -1,0 +1,39 @@
+{
+  "id": "kotlin_coroutines_01",
+  "title": "Основы корутин в Kotlin",
+  "description": "Изучаем launch, async/await и отмену корутин",
+  "difficulty": "intermediate",
+  "estimated_time": "15 минут",
+  "prerequisites": ["kotlin_basics"],
+  
+  "code_snippets": [
+    {
+      "id": "snippet_01",
+      "title": "Запуск корутины",
+      "code": "fun main() = runBlocking {\n    launch {\n        delay(1000L)\n        println(\"World!\")\n    }\n    println(\"Hello,\")\n}",
+      "language": "kotlin",
+      "hints": [
+        "Обратите внимание на порядок вывода",
+        "Что делает runBlocking?",
+        "Как работает delay?"
+      ]
+    },
+    {
+      "id": "snippet_02",
+      "title": "Async/await",
+      "code": "fun main() = runBlocking {\n    val deferred = async {\n        delay(1000L)\n        \"Результат\"\n    }\n    println(\"Ждём...\")\n    println(deferred.await())\n}",
+      "language": "kotlin"
+    }
+  ],
+  
+  "reference_solutions": {
+    "snippet_01": "Код запускает корутину с помощью launch внутри runBlocking. Сначала выводится 'Hello,', затем после задержки в 1 секунду - 'World!'. runBlocking блокирует текущий поток до завершения корутины.",
+    "snippet_02": "async запускает корутину, которая возвращает Deferred. await() приостанавливает выполнение до получения результата, но не блокирует поток."
+  },
+  
+  "metadata": {
+    "author": "Преподаватель",
+    "created": "2024-03-15",
+    "version": "1.0"
+  }
+}
